@@ -1,20 +1,46 @@
-import { Star } from "../icon/star";
-import { PlayButton } from "../icon/playButton";
-import { RightVector } from "../icon/rightVector";
+"use client";
+import { useState } from "react";
+import { HeroSlider } from "../_heroSlider/HeroSlider";
 
 
 export const Hero = () => {
+
+    const [slider, setSlider] = useState(0);
+
+    const slideNumber = (slider * 100) / 3;
+
+    const handleSlider = () => {
+        setSlider(slider + 1);
+    }
+    const handleReverseSlider = () => {
+        setSlider(slider - 1);
+    }
+
     return (
-        <div className="aspect-1440/600 mt-[36px] mb-[-20px] relative flex items-center justify-between">
-            <img className="w-[100%] h-[100%] object-cover absolute z-[-1]" src="wicked.png" alt="" />
-            <div className="flex flex-col w-[302px] text-white ml-[300px]">
-                <p className="text-[36px] font-[400]"> Now Playing: </p>
-                <p className="text-[56px] font-[700]"> Wicked </p>
-                <p className="text-[38px] font-[600] flex items-center gap-[8px]"> <Star /> 6.9/10 </p>
-                <p className="text-[18px] font-[400] mt-[20px]"> Elphaba, a misunderstood young woman because of her green skin, and Glinda, a popular girl, become friends at Shiz University in the Land of Oz. After an encounter with the Wonderful Wizard of Oz, their friendship reaches a crossroads.  </p>
-                <button className="bg-white text-black flex justify-center items-center gap-[10px] h-[40px] w-[145px] rounded-md mt-[20px] cursor-pointer hover:opacity-[75%]"> <PlayButton /> Watch trailer </button>
+        <div className="w-full overflow-hidden">
+            <div
+                className="flex w-[300%] transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${slideNumber}%)` }}>
+                <HeroSlider
+                    image="wicked.png"
+                    name="Wicked"
+                    text="Elphaba, a misunderstood young woman because of her green skin, and Glinda, a popular girl, become friends at Shiz University in the Land of Oz. After an encounter with the Wonderful Wizard of Oz, their friendship reaches a crossroads."
+                    rating="6.9"
+                    addButton={handleSlider} />
+
+                <HeroSlider
+                    image="wicked.png"
+                    name="Wicked"
+                    text="Elphaba, a misunderstood young woman because of her green skin, and Glinda, a popular girl, become friends at Shiz University in the Land of Oz. After an encounter with the Wonderful Wizard of Oz, their friendship reaches a crossroads."
+                    rating="6.9"
+                    addButton={handleSlider} />
+
+                <HeroSlider
+                    image="wicked.png"
+                    name="Wicked"
+                    text="Elphaba, a misunderstood young woman because of her green skin, and Glinda, a popular girl, become friends at Shiz University in the Land of Oz. After an encounter with the Wonderful Wizard of Oz, their friendship reaches a crossroads."
+                    rating="6.9" />
             </div>
-            <button className="bg-white w-[40px] h-[40px] rounded-[100%] flex justify-center items-center cursor-pointer mr-[80px]"> <RightVector /> </button>
         </div>
     );
 }
