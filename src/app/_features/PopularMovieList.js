@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import { MovieList } from "../_component/MovieList";
-import { MovieUpperText } from "../_component/MovieUpperText";
+import { MovieList } from "../_componentOfHomePage/MovieList";
+import { MovieUpperText } from "../_componentOfHomePage/MovieUpperText";
 
 const apiLink = "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
 const options = {

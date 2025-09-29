@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import { MovieList } from "../_component/MovieList";
-import { MovieUpperText } from "../_component/MovieUpperText";
+import { MovieList } from "../_componentOfHomePage/MovieList";
+import { MovieUpperText } from "../_componentOfHomePage/MovieUpperText";
 
 const apiLink = "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1";
 const options = {
@@ -22,7 +22,7 @@ export const UpcomingMovieList = () => {
         setLoading(true);
         const data = await fetch(apiLink, options);
         const jsonData = await data.json();
-        setUpcomingMoviesData(jsonData.results);
+        setUpcomingMoviesData(jsonData.results.slice(0, 10));
         setTimeout(() => {
             setLoading(false);
         }, 100000)
@@ -52,7 +52,7 @@ export const UpcomingMovieList = () => {
 
             <div className="flex flex-wrap justify-between ml-[80px] mr-[80px] mt-[40px] gap-[12px]">
 
-                {upcomingMoviesData.slice(0, 10).map((movie, index) => {
+                {upcomingMoviesData.map((movie, index) => {
                     return <MovieList
                         key={index}
                         title={movie.title}
