@@ -1,13 +1,25 @@
+"use client";
+import { useState } from "react";
 import { DownIcon } from "../icon/downIcon";
+import { Genre } from "../_componentOfHomePage/Genre";
 
 export const Header = () => {
+
+    const [showGenre, setShowGenre] = useState(false);
+
+    const handleGenreButton = () => {
+        setShowGenre(prev => !prev);
+    }
 
     return (
         <div>
             <div className="flex flex-row justify-around items-center mt-[12px]">
                 <img className="w-[102px]" src="moviez.png" alt="" />
                 <div className="flex gap-[12px]">
-                    <button className="border border-gray-200 rounded-md text-gray-900 w-[97px] h-[38px] cursor-pointer hover:bg-gray-100 flex justify-center items-center gap-[8px]"> <DownIcon /> Genre </button>
+                    <button
+                        onClick={handleGenreButton}
+                        className="border border-gray-200 rounded-md text-gray-900 w-[97px] h-[38px] cursor-pointer hover:bg-gray-100 flex justify-center items-center gap-[8px]"> <DownIcon /> Genre </button>
+                    {showGenre && <Genre />}
                     <div
                         className="border border-gray-200 rounded-md flex items-center justify-center pl-[15px]">
                         <img className="w-[16px] h-[16px]" src="magnifying-glass.png" />

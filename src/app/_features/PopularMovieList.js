@@ -57,7 +57,7 @@ export const PopularMovieList = () => {
                         key={index}
                         title={movie.title}
                         image={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                        rating={Math.round(movie.vote_average, 1)} />;
+                        rating={movie.vote_average.toFixed(1)} />;
                 })}
             </div>
         </div>

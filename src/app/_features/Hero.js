@@ -13,7 +13,7 @@ const options = {
 }
 
 
-export const Hero = (props) => {
+export const Hero = () => {
 
     const [nowPlayingMoviesData, setNowPlayingMoviesData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -30,17 +30,13 @@ export const Hero = (props) => {
 
     }
 
-    console.log("loading", loading);
-    console.log("nowPlayingMoviesData", nowPlayingMoviesData);
-
-
     useEffect(() => {
         getData();
     }, []);
 
     // if (loading) {
     //     return (
-    //         <div> ...Loading </div>
+    //         <div> ...Loading </div>x
     //     );
     // }
     if (!loading && typeof nowPlayingMoviesData === undefined) {
@@ -66,7 +62,7 @@ export const Hero = (props) => {
                     return <OneHeroSlider
                         key={index}
                         name={movie.title}
-                        rating={Math.round(movie.vote_average)}
+                        rating={movie.vote_average.toFixed(1)}
                         text={movie.overview}
                         total={nowPlayingMoviesData.length}
                         index={index}
@@ -75,7 +71,6 @@ export const Hero = (props) => {
                         addBackButton={handleReverseSlider} />
                 })}
             </div>
-            {console.log(nowPlayingMoviesData.length)}
         </div>
     );
 }
