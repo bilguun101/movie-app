@@ -2,9 +2,9 @@
 import { useEffect, useState } from "react";
 import { MovieList } from "../_componentOfHomePage/MovieCard";
 import { MovieUpperText } from "../_componentOfHomePage/MovieUpperText";
-import { useRouter } from "next/navigation";
 
-const apiLink = "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
+
+
 const options = {
     method: "GET",
     headers: {
@@ -14,23 +14,19 @@ const options = {
     }
 }
 
-export const PopularMovieList = () => {
+export default function UpcomingMovieList() {
 
     const [upcomingMoviesData, setUpcomingMoviesData] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const router = useRouter();
-
-    const handleSeeMore = () => {
-        router.push('/PopularSeeMore')
-    }
+    const apiLink = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=1`;
 
     const getData = async () => {
         setLoading(true);
         try {
             const data = await fetch(apiLink, options);
             const jsonData = await data.json();
-            setUpcomingMoviesData(jsonData.results.slice(0, 10));
+            setUpcomingMoviesData(jsonData.results.slice(0, 20));
         } catch (error) {
             console.error("Error fetching upcoming movies:", error);
             setUpcomingMoviesData([]);
@@ -57,22 +53,24 @@ export const PopularMovieList = () => {
     }
 
     return (
-        <div>
-            <MovieUpperText
-                onClick={handleSeeMore}
-                leftText={"Popular"} />
+        <>
+            <div className="w-[1440px] mx-auto">
+                <MovieUpperText
+                    leftText={"Popular"} />
 
-            <div className="flex flex-wrap justify-between ml-[80px] mr-[80px] mt-[40px] gap-[12px]">
+                <div className="flex flex-wrap justify-between ml-[80px] mr-[80px] mt-[40px] gap-[12px]">
 
-                {upcomingMoviesData.slice(0, 10).map((movie, index) => {
-                    return <MovieList
-                        key={index}
-                        title={movie.title}
-                        movieId={movie.id}
-                        image={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                        rating={movie.vote_average.toFixed(1)} />;
-                })}
+                    {upcomingMoviesData.map((movie, index) => {
+                        return <MovieList
+                            key={index}
+                            movieId={movie.id}
+                            title={movie.title}
+                            image={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                            rating={movie.vote_average.toFixed(1)} />;
+                    })}
+                </div>
             </div>
-        </div>
+        </>
     );
+
 }

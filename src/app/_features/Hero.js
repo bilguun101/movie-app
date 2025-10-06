@@ -17,12 +17,14 @@ export const Hero = () => {
 
     const [nowPlayingMoviesData, setNowPlayingMoviesData] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [trailerKey, setTrailerKey] = useState(null);
+
 
     const getData = async () => {
         setLoading(true);
         const data = await fetch(apiLink, options);
         const jsonData = await data.json();
-        console.log("nowplaying", jsonData)
+        console.log("nowplaying", jsonData);
         setNowPlayingMoviesData(jsonData.results.slice(0, 3));
         setTimeout(() => {
             setLoading(false);
@@ -33,6 +35,37 @@ export const Hero = () => {
     useEffect(() => {
         getData();
     }, []);
+
+    const fetchTrailer = async (id) => {
+        try {
+
+
+            const data = await fetch(
+                `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
+                options
+            );
+            const jsonData = await data.json();
+            console.log(jsonData);
+
+            const trailer = jsonData.results.find(
+                (vid) => vid.type === "Trailer" && vid.site === "YouTube"
+            );
+
+            if (trailer) {
+                setTrailerKey(trailer.key);
+            }
+            else {
+                setTrailerKey(null)
+            }
+        }
+        catch (err) {
+            console.error("ts pmo twin", err);
+        }
+    };
+    console.log("this is trailer key", trailerKey);
+
+
+
 
     // if (loading) {
     //     return (
@@ -55,22 +88,43 @@ export const Hero = () => {
     }
 
     return (
-        <div className="w-full overflow-hidden">
-            <div className="flex w-[300%] transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${slideNumber}%)` }}>
-                {nowPlayingMoviesData.map((movie, index) => {
-                    return <OneHeroSlider
-                        key={index}
-                        name={movie.title}
-                        rating={movie.vote_average.toFixed(1)}
-                        text={movie.overview}
-                        total={nowPlayingMoviesData.length}
-                        index={index}
-                        image={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-                        addNextButton={handleSlider}
-                        addBackButton={handleReverseSlider} />
-                })}
+        <>
+            <div className="w-full overflow-hidden">
+                <div className="flex w-[300%] transition-transform duration-500 ease-in-out"
+                    style={{ transform: `translateX(-${slideNumber}%)` }}>
+                    {nowPlayingMoviesData.map((movie, index) => {
+                        return <OneHeroSlider
+                            key={index}
+                            onClick={() => fetchTrailer(movie.id)}
+                            name={movie.title}
+                            rating={movie.vote_average.toFixed(1)}
+                            text={movie.overview}
+                            total={nowPlayingMoviesData.length}
+                            index={index}
+                            image={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                            addNextButton={handleSlider}
+                            addBackButton={handleReverseSlider} />
+                    })}
+                </div>
             </div>
-        </div>
+            {trailerKey && (
+                <div className="fixed top-0 left-0 w-full h-full bg-black/80 flex items-center justify-center z-[50]">
+                    <div className="relative w-[800px] max-w-full h-[450px]">
+                        <button
+                            onClick={() => setTrailerKey(null)}
+                            className="absolute flex justify-center items-center w-[25px] h-[25px] rounded-full top-1 right-1 bg-white/80 text-xl font-bold hover:text-red-400 cursor-pointer"> x </button>
+
+                        <iframe
+                            src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1`}
+                            title="Trailer"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            frameBorder="0"
+                            className="w-full h-full rounded-xl"
+                        ></iframe>
+                    </div>
+                </div>
+            )}
+        </>
     );
 }

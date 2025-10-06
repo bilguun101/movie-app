@@ -14,7 +14,7 @@ export const Header = () => {
     return (
         <div>
             <div className="flex flex-row justify-around items-center mt-[12px]">
-                <img className="w-[102px]" src="moviez.png" alt="" />
+                <img className="w-[102px]" src="/moviez.png" alt="" />
                 <div className="flex gap-[12px]">
                     <button
                         onClick={handleGenreButton}
@@ -22,14 +22,14 @@ export const Header = () => {
                     {showGenre && <Genre />}
                     <div
                         className="border border-gray-200 rounded-md flex items-center justify-center pl-[15px]">
-                        <img className="w-[16px] h-[16px]" src="magnifying-glass.png" />
+                        <img className="w-[16px] h-[16px]" src="/magnifying-glass.png" />
                         <input
                             placeholder="Search..."
                             className="placeholder-gray-400 w-[379px] h-[36px] focus:outline-none pl-[14px]" />
                     </div>
                 </div>
                 <button
-                    className="border border-gray-200 rounded-lg w-[36px] h-[36px] flex justify-center items-center cursor-pointer"> <img src="moon.png" /> </button>
+                    className="border border-gray-200 rounded-lg w-[36px] h-[36px] flex justify-center items-center cursor-pointer"> <img src="/moon.png" /> </button>
             </div>
 
         </div>

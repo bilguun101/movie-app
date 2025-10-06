@@ -5,7 +5,7 @@ import { LeftVector } from "../icon/leftVector";
 
 export const OneHeroSlider = (props) => {
 
-    const { image, name, text, rating, addNextButton, addBackButton, index, total } = props;
+    const { image, name, text, rating, addNextButton, addBackButton, index, total, onClick } = props;
 
     return (
         <div className="w-full h-[600px] mt-[36px] mb-[-20px] relative flex items-center justify-between">
@@ -20,7 +20,9 @@ export const OneHeroSlider = (props) => {
                 <p className="text-[36px] font-[700]"> {name} </p>
                 <p className="text-[16px] font-[600] flex items-center gap-[8px]"> <Star /> {rating}/10 </p>
                 <p className="text-[14px] font-[400] mt-[20px]"> {text} </p>
-                <button className="bg-white text-black flex justify-center items-center gap-[10px] h-[40px] w-[145px] rounded-md mt-[20px] cursor-pointer hover:opacity-[75%]"> <PlayButton /> Watch trailer </button>
+                <button
+                    onClick={onClick}
+                    className="bg-white text-black flex justify-center items-center gap-[10px] h-[40px] w-[145px] rounded-md mt-[20px] cursor-pointer hover:opacity-[75%]"> <PlayButton /> Watch trailer </button>
             </div>
             {index < total - 1 && <button
                 onClick={addNextButton}
