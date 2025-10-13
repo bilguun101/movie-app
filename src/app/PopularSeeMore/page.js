@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import { MovieList } from "../_componentOfHomePage/MovieCard";
-import { MovieUpperText } from "../_componentOfHomePage/MovieUpperText";
+import { MovieUpperText2 } from "../_componentOfHomePage/MovieUpperText2";
+import { Footer } from "../_features/Footer";
 
 
 
@@ -55,7 +56,7 @@ export default function UpcomingMovieList() {
     return (
         <>
             <div className="w-[1440px] mx-auto">
-                <MovieUpperText
+                <MovieUpperText2
                     leftText={"Popular"} />
 
                 <div className="flex flex-wrap justify-between ml-[80px] mr-[80px] mt-[40px] gap-[12px]">
@@ -69,6 +70,7 @@ export default function UpcomingMovieList() {
                             rating={movie.vote_average.toFixed(1)} />;
                     })}
                 </div>
+                <Footer />
             </div>
         </>
     );

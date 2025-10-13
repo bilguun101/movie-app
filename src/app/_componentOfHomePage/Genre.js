@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { RightVector } from "../icon/rightVector";
 import { Longline } from "../icon/LongLine";
+import Link from "next/link";
 
 const apiLink = "https://api.themoviedb.org/3/genre/movie/list?language=en";
 const options = {
@@ -47,13 +48,15 @@ export const Genre = () => {
                 {genreData.map((movie, name) => {
                     return <div
                         key={name}
-                        className="flex flex-wrap gap-[16px]">
-                        <button className="border border-gray-200 rounded-full font-[600] text-[14px] flex justify-center items-center gap-[8px] min-w-[20px] h-[30px] cursor-pointer pr-[10px] pl-[10px] pt-[2px] pb-[2px] hover:bg-gray-100"> {movie.name} <RightVector /> </button>
+                        className="flex flex-wrap gap-[16px]"><Link href={`/GenreList/${movie.id}`}>
+                            <button
+                                className="border border-gray-200 rounded-full font-[600] text-[14px] flex justify-center items-center gap-[8px] min-w-[20px] h-[30px] cursor-pointer pr-[10px] pl-[10px] pt-[2px] pb-[2px] hover:bg-gray-100"> {movie.name} <RightVector /> </button></Link>
+
                     </div>;
                 })}
             </div>
 
-        </div>
+
+        </div >
     );
-}
-// border border-gray-200 rounded-full font-[600] text-[12px] flex justify-center items-center gap-[8px] w-auto h-[20px] cursor-pointer pr-[10px] pl-[10px] pt-[2px] pb-[2px]
+}  

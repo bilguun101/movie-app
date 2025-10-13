@@ -24,9 +24,7 @@ export const UpcomingMovieList = () => {
     const handleSeeMore = () => {
         router.push('/UpcomingSeeMore')
     }
-
-    const [page, setPage] = useState(1);
-    const apiLink = `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=${page}`;
+    const apiLink = `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1`;
 
     const getData = async () => {
         setLoading(true);
@@ -48,7 +46,7 @@ export const UpcomingMovieList = () => {
 
     useEffect(() => {
         getData();
-    }, [page]);
+    }, []);
 
     if (loading) {
         return (

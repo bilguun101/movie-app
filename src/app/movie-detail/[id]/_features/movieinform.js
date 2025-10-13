@@ -8,6 +8,7 @@ import { LongestLine } from "@/app/icon/longestLine";
 import { RightArrow } from "@/app/icon/rightArrow";
 import { Footer } from "@/app/_features/Footer";
 import { MovieList2 } from "@/app/_componentOfHomePage/MovieCard2";
+import { useRouter } from "next/navigation";
 
 
 const options = {
@@ -25,12 +26,22 @@ export const MovieDetailPage = () => {
 
     const { id } = param;
 
+    const router = useRouter();
+
     const [moviesData, setMoviesData] = useState([]);
     const [moviesInform, setMoviesInform] = useState();
     const [moviesMore, setMoviesMore] = useState([]);
     const [trailerKey, setTrailerKey] = useState(null);
 
     const [loading, setLoading] = useState(false);
+
+    const handleMoreLikeThisButton = () => {
+        router.push(`/more-like-this/${id}`);
+    }
+
+    const handleHomeButton = () => {
+        router.push('/');
+    }
 
     const getData = async () => {
         setLoading(true);
@@ -124,9 +135,12 @@ export const MovieDetailPage = () => {
 
     return (
         <>
-            <Header />
+            <Header
+                logoStyle={"w-[102px] cursor-pointer"}
+                onClick={handleHomeButton}
+            />
             {moviesData &&
-                <div className="w-[1080px] mx-auto">
+                <div className="w-[1080px] mx-auto mt-[52px]">
                     <div className="flex justify-between">
                         <div className="flex flex-col">
                             <p className="font-[700] text-[36px]"> {moviesData.title} </p>
@@ -237,12 +251,14 @@ export const MovieDetailPage = () => {
                     <LongestLine />
                     <div className="flex justify-between items-center mt-[20px]">
                         <p className="text-[24px] font-[600]"> More like this </p>
-                        <p className="text-[14px] font-[500] flex justify-center items-center gap-[8px] cursor-pointer"> See more <RightArrow /> </p>
+                        <button
+                            onClick={handleMoreLikeThisButton}
+                            className="text-[14px] font-[500] flex justify-center items-center gap-[8px] cursor-pointer"> See more <RightArrow /> </button>
                     </div>
                     <div className="flex justify-between items-center mt-[30px]">
-                        {moviesMore?.map((movie, index) => {
+                        {moviesMore?.map((movie, id) => {
                             return <MovieList2
-                                key={index}
+                                key={id}
                                 movieId={movie.id}
                                 title={movie.title}
                                 image={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
