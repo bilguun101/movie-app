@@ -18,6 +18,8 @@ export const Hero = () => {
     const [nowPlayingMoviesData, setNowPlayingMoviesData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [trailerKey, setTrailerKey] = useState(null);
+    const [slider, setSlider] = useState(0);
+
 
 
     const getData = async () => {
@@ -76,7 +78,6 @@ export const Hero = () => {
         return <div> Something went wrong </div>
     }
 
-    const [slider, setSlider] = useState(0);
 
     const slideNumber = (slider * 100) / 3;
 

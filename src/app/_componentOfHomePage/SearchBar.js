@@ -42,7 +42,7 @@ export const SearchBar = ({ movies, values }) => {
                     <div
                         key={values}
                         className="flex justify-start items-center mb-[12px] mt-[10px] ml-[28px]">
-                        <button className="cursor-pointer hover:text-gray-600"> See all results for "{values}" </button>
+                        <button className="cursor-pointer hover:text-gray-600"> See all results for &quot;{values}&quot; </button>
                     </div>
                 </div>
                 }

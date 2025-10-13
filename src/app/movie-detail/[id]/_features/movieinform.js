@@ -36,7 +36,7 @@ export const MovieDetailPage = () => {
     const [loading, setLoading] = useState(false);
 
     const handleMoreLikeThisButton = () => {
-        router.push(`/more-like-this/${id}`);
+        router.push(`/MoreLikeThis/${id}`);
     }
 
     const handleHomeButton = () => {
