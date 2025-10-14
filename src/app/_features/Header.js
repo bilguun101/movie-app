@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { DownIcon } from "../icon/downIcon";
 import { Genre } from "../_componentOfHomePage/Genre";
 import { SearchBar } from "../_componentOfHomePage/SearchBar";
+import { useRouter } from "next/navigation";
 
 const options = {
     method: "GET",
@@ -16,6 +17,8 @@ const options = {
 export const Header = (props) => {
 
     const { onClick, logoStyle } = props;
+
+    const router = useRouter();
 
     const [movies, setMovies] = useState([]);
     const [showGenre, setShowGenre] = useState(false);
@@ -60,6 +63,11 @@ export const Header = (props) => {
                         className="border border-gray-200 rounded-md flex items-center justify-center pl-[15px]">
                         <img className="w-[16px] h-[16px]" src="/magnifying-glass.png" />
                         <input
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter" && values.trim() !== "") {
+                                    router.push(`/SeeMoreOf/${values}`);
+                                }
+                            }}
                             placeholder="Search..."
                             className="placeholder-gray-400 w-[379px] h-[36px] focus:outline-none pl-[14px]"
                             value={values}

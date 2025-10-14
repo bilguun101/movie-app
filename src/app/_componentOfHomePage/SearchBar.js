@@ -1,7 +1,16 @@
+"use client";
 import Link from "next/link";
 import { RightArrow } from "../icon/rightArrow";
+import { useRouter } from "next/navigation";
 
 export const SearchBar = ({ movies, values }) => {
+
+    const router = useRouter();
+
+    const handleSeeMoreResultsOfButton = () => {
+        router.push(`/SeeMoreOf/${values}`);
+    }
+
     return (
         <>
             <div className="absolute w-[577px] max-h-[729px] overflow-y-auto rounded-lg bg-white shadow-lg z-50 mt-[20px]">
@@ -42,7 +51,9 @@ export const SearchBar = ({ movies, values }) => {
                     <div
                         key={values}
                         className="flex justify-start items-center mb-[12px] mt-[10px] ml-[28px]">
-                        <button className="cursor-pointer hover:text-gray-600"> See all results for &quot;{values}&quot; </button>
+                        <button
+                            onClick={handleSeeMoreResultsOfButton}
+                            className="cursor-pointer hover:text-gray-600"> See all results for &quot;{values}&quot; </button>
                     </div>
                 </div>
                 }
