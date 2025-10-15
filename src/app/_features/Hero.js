@@ -91,7 +91,7 @@ export const Hero = () => {
     return (
         <>
             <div className="w-full overflow-hidden">
-                <div className="flex w-[300%] transition-transform duration-500 ease-in-out"
+                <div className="flex w-[300%] transition-transform duration-500 ease-in-out overflow-hidden "
                     style={{ transform: `translateX(-${slideNumber}%)` }}>
                     {nowPlayingMoviesData.map((movie, index) => {
                         return <OneHeroSlider

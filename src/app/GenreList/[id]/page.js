@@ -62,7 +62,7 @@ export default function GenreList() {
     return (
         <div className="w-[1440px] m-auto">
             <Header
-                logoStyle={"w-[102px] cursor-pointer"}
+                logoStyle={"cursor-pointer"}
                 onClick={handleHomeButton}
             />
             <div className="mt-[52px] ">

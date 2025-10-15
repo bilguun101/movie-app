@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { MovieList } from "../_componentOfHomePage/MovieCard";
 import { Footer } from "../_features/Footer";
 import { MovieUpperText2 } from "../_componentOfHomePage/MovieUpperText2";
+import { useRouter } from "next/navigation";
+import { Header } from "../_features/Header";
 
 
 
@@ -19,6 +21,12 @@ export default function UpcomingMovieList() {
 
     const [upcomingMoviesData, setUpcomingMoviesData] = useState([]);
     const [loading, setLoading] = useState(false);
+
+    const router = useRouter();
+
+    const handleHomeButton = () => {
+        router.push('/');
+    }
 
     const apiLink = `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1`;
 
@@ -56,6 +64,9 @@ export default function UpcomingMovieList() {
     return (
         <>
             <div className="w-[1440px] mx-auto">
+                <Header
+                    onClick={handleHomeButton}
+                    logoStyle={"cursor-pointer"} />
                 <MovieUpperText2
                     leftText={"Top Rated"} />
 

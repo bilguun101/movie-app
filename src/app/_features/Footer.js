@@ -4,7 +4,7 @@ import { Phone } from "../icon/phone";
 
 export const Footer = () => {
     return (
-        <div className="bg-indigo-700 w-[100%] h-[350px] mt-[90px] text-white flex justify-between pl-[150px] pr-[200px] pt-[60px]">
+        <div className="bg-indigo-700 w-[100%] h-[350px] mt-[90px] text-white flex justify-between pl-[7.81vw] pr-[10.42vw] pt-[60px] max-sm:gap-[50px]">
             <div className="flex flex-col gap-[20px]">
                 <BottomLogo />
                 <p className="text-[18px] font-[400]"> © 2024 Movie Z. All Rights Reserved. </p>

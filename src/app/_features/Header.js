@@ -49,7 +49,7 @@ export const Header = (props) => {
     }
 
     return (
-        <div className="w-[1440px] mx-auto">
+        <div className="max-w-[1440px] mx-auto">
             <div className="flex flex-row justify-around items-center mt-[12px]" >
                 <img
                     onClick={onClick}
@@ -69,7 +69,7 @@ export const Header = (props) => {
                                 }
                             }}
                             placeholder="Search..."
-                            className="placeholder-gray-400 w-[379px] h-[36px] focus:outline-none pl-[14px]"
+                            className="placeholder-gray-400 sm:w-[379px] h-[36px] focus:outline-none pl-[14px] max-sm:w-[30px]"
                             value={values}
                             onChange={handleInputValue} />
                     </div>

@@ -13,7 +13,7 @@ export default function Home() {
 
   return (
     <div className="w-[100vw] flex justify-center">
-      <div className="w-[1440px]">
+      <div className="sm:w-[1440px] max-sm:w-full">
         <Header />
 
         <Hero />

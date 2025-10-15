@@ -59,7 +59,7 @@ export default function SeeMoreOf() {
             <div className="w-[1440px] m-auto">
                 <div>
                     <Header
-                        logoStyle={"w-[102px] cursor-pointer"}
+                        logoStyle={"cursor-pointer"}
                         onClick={handleHomeButton} />
                 </div>
                 <div className="mt-[52px]">
